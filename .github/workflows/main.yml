@@ -1,17 +1,25 @@
-name: Deploy
+name: Manually Deploy to heroku
 
-on:
-  push:
-    branches:
-      - master
+on: workflow_dispatch
 
 jobs:
-  build:
+  deploy:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: akhileshns/heroku-deploy@v3.12.12 # This is the action
+      - uses: prateek/heroku-deploy@v3.12.12
         with:
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
-          heroku_app_name: "gitu-tomioka-bot" #Must be unique in Heroku
-          heroku_email: "botleech84@gmail.com"
+          heroku_app_name: ${{secrets.HEROKU_APP_NAME}}
+          heroku_email: ${{secrets.HEROKU_EMAIL}}
+          usedocker: true
+          docker_heroku_process_type: worker
+          stack: "container"
+          region: "eu"
+        env:
+          HD_APP_ID: ${{secrets.APP_ID}}
+          HD_API_HASH: ${{secrets.API_HASH}}
+          HD_BOT_TOKEN: ${{secrets.BOT_TOKEN}}
+          HD_ALD_USER: ${{secrets.ALD_USER}}
+          HD_OWNER_ID: ${{secrets.OWNER_ID}}
+          HD_BASE_URL_OF_THE_BOT: ${{secrets.BASE_URL_OF_BOT}}
