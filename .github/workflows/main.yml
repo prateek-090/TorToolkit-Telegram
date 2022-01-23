@@ -14,6 +14,7 @@ jobs:
           heroku_email: ${{secrets.HEROKU_EMAIL}}
           docker_heroku_process_type: worker
           region: "eu"
+          stack: "container"
         env:
           HD_APP_ID: ${{secrets.APP_ID}}
           HD_API_HASH: ${{secrets.API_HASH}}
