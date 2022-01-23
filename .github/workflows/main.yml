@@ -12,9 +12,8 @@ jobs:
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
           heroku_app_name: ${{secrets.HEROKU_APP_NAME}}
           heroku_email: ${{secrets.HEROKU_EMAIL}}
-          usedocker: true
+          branch: "alpha"
           docker_heroku_process_type: worker
-          stack: "container"
           region: "eu"
         env:
           HD_APP_ID: ${{secrets.APP_ID}}
